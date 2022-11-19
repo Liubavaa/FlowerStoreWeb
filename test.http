@@ -6,6 +6,7 @@ Content-Type: application/json
 
 {
   "sepalLength": 100,
-  "color": "blue",
-  "price": 100
+  "color": 1,
+  "flowerType": 1,
+  "price": 90
 }

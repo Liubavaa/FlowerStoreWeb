@@ -8,7 +8,6 @@ import java.util.List;
 
 @Configuration
 public class FlowerConfig {
-
     @Bean
     CommandLineRunner commandLineRunner(FlowerRepository repository){
         return args -> {

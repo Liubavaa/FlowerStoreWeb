@@ -1,14 +1,14 @@
 package com.example.demo;
 
-import com.example.demo.delivery.DHLDelivery;
-import com.example.demo.delivery.PostDelivery;
-import com.example.demo.flowers.FlowerController;
-import com.example.demo.flowers.Item;
-import com.example.demo.payment.CreditCardPayment;
-import com.example.demo.payment.PayPalPayment;
+import com.example.demo.decorator.*;
+import com.example.demo.delivery.*;
+import com.example.demo.flowers.*;
+import com.example.demo.payment.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Objects;
 
 
 @SpringBootTest
@@ -35,5 +35,22 @@ class FlowerApplicationTests {
 		assert (payment2.pay(controller.getFlowers().stream().
 				mapToDouble(Item::getPrice).
 				sum()) == 157.5);
+	}
+
+	@Test
+	public void testDecorators(){
+		Flower flower = new Flower(1L,50, FlowerColor.RED, 50, FlowerType.ROSE);
+		Item ribbonFlower = new RibbonDecorator(flower);
+		Item basketFlower = new BasketDecorator(flower);
+		Item paperFlower = new PaperDecorator(flower);
+		assert (ribbonFlower.getPrice() == 90);
+		assert (Objects.equals(ribbonFlower.getDescription(),
+				"Red Rose that costs 50.0 decorated with ribbon"));
+		assert (basketFlower.getPrice() == 54);
+		assert (Objects.equals(basketFlower.getDescription(),
+				"Red Rose that costs 50.0 decorated with basket"));
+		assert (paperFlower.getPrice() == 63);
+		assert (Objects.equals(paperFlower.getDescription(),
+				"Red Rose that costs 50.0 decorated with paper"));
 	}
 }

@@ -2,8 +2,8 @@ package com.example.demo.flowers;
 
 
 public enum FlowerColor {
-    RED("red"), BLUE("blue"),
-    YELLOW("yellow"), WHITE("white");
+    RED("Red"), BLUE("Blue"),
+    YELLOW("Yellow"), WHITE("White");
     private final String stringRepresentation;
 
     FlowerColor(String stringRepresentation) {

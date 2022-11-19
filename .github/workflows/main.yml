@@ -17,11 +17,5 @@ jobs:
         with:
           java-version: '15'
           distribution: 'adopt'
-      - name: Lint Code Base
-        uses:  github/super-linter/slim@v4
-        env:
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JAVA_FILE_NAME: checkstyle.xml
       - name: Test with Maven
         run: mvn --batch-mode --update-snapshots package
